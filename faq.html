@@ -1,0 +1,900 @@
+<!--?php
+
+$servername = "localhost";$username = "u365798246_kyle";
+$password = "O-CNZrd(5%QZ";
+try {    $conn = new PDO("mysql:host=$servername;dbname=u365798246_book", $username, $password);
+    // set the PDO error mode to exception    $conn--->
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>AudiobookReviews.com - Audiobook Reviews and Recommendations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="An open-blog for sharing reviewing and voting on the best audiobooks. Audiobook reviews, recommendaitons and discussion at AudioBookReviews.com">
+    <meta name="keywords" content="audiobook, audiobooks, audio book, reviews, audiobook reviews, audio book reviews, audiobooks, audio books">
+    <meta name="author" content="Anonymous">
+    <meta property="og:title" content="Audiobook Reviews">
+    <meta property="og:type" content="audio.book">
+    <meta property="og:url" content="http://www.audiobookreviews.com">
+    <meta property="og:image" content="http://www.audiobookreviews.com/logosmall.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+/*
+    input[type="text"] {
+    width: 175px;
+    height: 25px;
+    padding-right: 50px;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    
+}
+
+input[type="submit"] {
+    margin-left: -42px;
+    height: 25px;
+    width: 42px;
+    font-weight: 100;
+    line-height: 0;
+    letter-spacing: 0;
+    text-transform: none;
+    text-decoration: none;
+    padding: 0;
+    border-radius: 0;
+    background-color:#a9a9a969;
+}
+form {
+    margin: 0;
+    display: inline;
+    float: left;
+    padding: 0;
+}
+*/
+@media screen and (max-width: 520px){
+#search_form {
+    justify-content: left !important;
+}
+.nine{
+    padding-left: 5px !important;
+    padding-right: 4px !important;
+}
+
+.er-dummy-search{
+    margin-bottom: -26px !important;
+}
+
+}
+.er-dummy-search{
+     justify-content: left !important;
+}
+.button {
+    background-color: #8d8e8b;
+    border: none;
+    color: white;
+    padding: 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+
+.button1 {border-radius: 2px;}
+.button2 {border-radius: 4px;}
+.button3 {border-radius: 8px;
+          background-color: #33C3F0;  
+
+
+}
+.udc {
+    cursor:pointer;
+}
+
+.button4 {border-radius: 12px;}
+.button5 {border-radius: 50%;}
+
+
+
+table#example td{
+    border-left:none !important;
+    border-right:none !important;
+}
+
+
+
+
+
+
+.wrap {
+  height: 200px;
+  width: 200px;
+  border: 1px solid #aaa;
+  margin: 10px;
+  display: flex;
+}
+
+.wrap span {
+  align-self: flex-end;
+}
+
+ a#pagination {
+   padding:8px 16px;
+   border:1px solid #ccc;
+   color:#333;
+   font-weight:bold;
+   
+  }
+
+
+
+h1 { 
+font-size: 20px; 
+font-family: serif;
+color: #111111;
+}
+
+
+
+
+
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+
+
+
+
+
+
+a:link {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+#srch_form input[type=text] {
+  padding: 6px;
+  font-size: 15px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+#srch_form button {
+  float: left;
+  width: 50px;
+  padding: 6px;
+  background: #2196F3;
+  color: white;
+  font-size: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+body {
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+div.table-title {
+   display: block;
+  margin: auto;
+  max-width: 700px;
+  padding:5px;
+  width: 100%;
+    border-collapse: separate;
+  border-spacing: 15px;
+    border: 0px solid black;
+}
+
+.table-title h3 {
+   color: #fafafa;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: "Roboto", helvetica, arial, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+     border: 0px solid black;
+}
+
+
+
+
+
+#table1 {
+  border-collapse: separate;
+  border-spacing: 5px;
+  border: 0px;
+
+    padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+
+
+
+
+.img-fluid {
+  max-width: 90%;
+  height: auto;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 1000px){
+    #desktop_view{
+        display:none;
+    }
+     #mobile_view{
+        display:block;
+    }
+    #site_logo{
+        width:350px;
+    }
+    form#srch_form {
+    margin-left: 12px !important;
+}
+}
+@media screen and (min-width: 1000px){
+    #desktop_view{
+        display:block;
+    }
+     #mobile_view{
+        display:none;
+    }
+    #site_logo{
+        width:75%;
+    }
+}
+
+.cards {
+  width: 100%; 
+  max-width: 100%;
+  background: #fff;
+}
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 2rem;
+  padding: 1rem;
+  font-family: Arial;
+  color: rgba(0,0,0,0.6);
+  line-height: 1.3rem;
+  font-size: 0.9rem;
+  background-color: rgba(0,0,0,0.03);
+  transition: all 0.3s;
+}
+.card:hover {
+  box-shadow: 1px 1px 12px rgba(0,0,0,0.2);
+}
+.card:nth-child(even) {
+  background-color: rgba(0,0,0,0.1) !important;
+}
+.card > img {
+  height: 10rem;
+ }
+.card > div > div:nth-child(1) {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+.card > div > div:nth-child(2) {
+  margin-bottom: 0.5rem;
+}
+.card > div > div:nth-child(3) {
+  font-style: italic;
+ }
+ .card > div > div:nth-child(4) {
+  position: absolute;
+  bottom: 1rem;
+ 
+  float:left;
+ }
+.card > div > div:nth-child(5) {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;  
+  float:right;
+  
+ }
+.card > div > div:nth-child(5) img {
+  height: 1.2rem;
+  margin-left: 0.5rem;
+  transition: all 0.1s;
+}
+.card > div > div:nth-child(5) img:hover {
+  transform: scale(1.4);
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+div.example {
+
+}
+
+@media screen and (min-width: 601px) {
+  div.example {
+    font-size: 45px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  div.example {
+    font-size: 25px;
+  }
+}
+
+
+
+
+
+img {
+  max-width: auto;
+  height: auto;
+}
+
+
+
+
+div.b {
+  text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+.holds-the-iframe {
+  background:url(https://i.pinimg.com/originals/f6/06/cb/f606cbf26c0a18898b96ef6857953a75.gif) center center no-repeat;
+}
+
+body {
+  overflow: hidden;
+}
+
+
+/* Preloader */
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f5f7f6;
+  /* change if the mask should have another color then white */
+  z-index: 99;
+  /* makes sure it stays on top */
+}
+
+#status {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  /* centers the loading animation horizontally one the screen */
+  top: 50%;
+  /* centers the loading animation vertically one the screen */
+  background-image: url(https://i.pinimg.com/originals/f6/06/cb/f606cbf26c0a18898b96ef6857953a75.gif);
+  /* path to your loading animation */
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -100px 0 0 -100px;
+  /* is width and height divided by two */
+}
+
+
+
+
+        {
+            margin: 0;
+            padding: 0;
+        }
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 95%;
+            max-height: 100vh;
+            margin: auto;
+        }
+
+
+
+
+
+
+
+</style> <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+  
+    @media only screen and (max-width: 550px) {
+
+  #mga {
+    width: 25px !important;
+  }
+
+}
+    @media only screen and (max-width: 350px) {
+
+  #mga {
+    width: 25px !important;
+  }
+
+}
+</style> </head>
+  <body>
+    <div class="w3-bar w3-light-grey">
+      <?php 
+    session_start();    if(!isset($_SESSION['username'])){ ?><a href="https://www.audiobookreviews.com/loginSubmit.php"
+        class="w3-bar-item w3-button w3-mobile w3-blue">Submit a Review</a><?php } else {?>&nbsp;
+      <?php } ?>
+      <div class="w3-dropdown-hover w3-mobile"> <a href="#" class="w3-button">By
+          Genre </a>
+        <div class="w3-dropdown-content w3-bar-block w3-dark-grey"> <a href="fic.php"
+            class="w3-bar-item w3-button w3-mobile">--- All Fiction ---</a> <a
+            href="contempfic.php" class="w3-bar-item w3-button w3-mobile">
+            Contemporary Fiction </a> <a href="classlit.php" class="w3-bar-item w3-button w3-mobile">
+            Classic Literature </a> <a href="scifi.php" class="w3-bar-item w3-button w3-mobile">
+            Science Fiction </a> <a href="fan.php" class="w3-bar-item w3-button w3-mobile">
+            Fantasy </a> <a href="child.php" class="w3-bar-item w3-button w3-mobile">
+            Children's </a> <a href="nonfic.php" class="w3-bar-item w3-button w3-mobile">---
+            All Non-Fiction --- </a> <a href="scitech.php" class="w3-bar-item w3-button w3-mobile">
+            Science &amp; Technology </a> <a href="bio.php" class="w3-bar-item w3-button w3-mobile">
+            Biography &amp; Memoir</a> <a href="econ.php" class="w3-bar-item w3-button w3-mobile">
+            Business &amp; Economics</a> <a href="self.php" class="w3-bar-item w3-button w3-mobile">
+            Self-help &amp; Popular Psychology</a> <a href="hispol.php" class="w3-bar-item w3-button w3-mobile">
+            History &amp; Politics</a> <a href="comedy.php" class="w3-bar-item w3-button w3-mobile">
+            Comedy</a> </div>
+      </div>
+      <div class="w3-dropdown-hover w3-mobile"> <a href="#" class="w3-button">Best
+          of Lists </a>
+        <div class="w3-dropdown-content w3-bar-block w3-dark-grey"> <a href="http://www.audiobookreviews.com/feynmanlist.php"
+            class="w3-bar-item w3-button w3-mobile">5 Best Richard Feynman
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/heinleinlist.php"
+            class="w3-bar-item w3-button w3-mobile">5 Best Robert A. Heinlein
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/shakespearelist.php"
+            class="w3-bar-item w3-button w3-mobile">5 Best Shakespeare
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/orwelllist.php"
+            class="w3-bar-item w3-button w3-mobile">5 Best George Orwell
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/bitcoinlist.php"
+            class="w3-bar-item w3-button w3-mobile">10 Best Bitcoin and
+            Cryptocurrency Audiobooks</a> <a href="http://www.audiobookreviews.com/civilwarlist.php"
+            class="w3-bar-item w3-button w3-mobile">10 Best Civil War Audiobooks</a>
+          <a href="http://www.audiobookreviews.com/mccarthylist.php" class="w3-bar-item w3-button w3-mobile">10
+            Best Cormac McCarthy Audiobooks</a> <a href="http://www.audiobookreviews.com/fanlist.php"
+            class="w3-bar-item w3-button w3-mobile">10 Best Fantasy Audiobooks</a>
+          <a href="http://www.audiobookreviews.com/twainlist.php" class="w3-bar-item w3-button w3-mobile">10
+            Best Mark Twain Audiobooks</a> <a href="http://www.audiobookreviews.com/parentinglist.php"
+            class="w3-bar-item w3-button w3-mobile">10 Best Parenting Audiobooks</a>
+          <a href="http://www.audiobookreviews.com/physlist.php" class="w3-bar-item w3-button w3-mobile">10
+            Best Physics Audiobooks</a> <a href="http://www.audiobookreviews.com/quantumlist.php"
+            class="w3-bar-item w3-button w3-mobile">10 Best Quantum Physics
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/trumplist.php"
+            class="w3-bar-item w3-button w3-mobile">10 Best Donald Trump
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/chomskylist.php"
+            class="w3-bar-item w3-button w3-mobile">10 Best Noam Chomsky
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/investinglist.php"
+            class="w3-bar-item w3-button w3-mobile">25 Best Investing Audiobooks</a>
+          <a href="http://www.audiobookreviews.com/classlitlist.php" class="w3-bar-item w3-button w3-mobile">25
+            Best Classic Literature Audiobooks</a> <a href="http://www.audiobookreviews.com/ttclist.php"
+            class="w3-bar-item w3-button w3-mobile">25 Best The Teaching Company
+            Audio Lectures</a> <a href="http://www.audiobookreviews.com/selflist.php"
+            class="w3-bar-item w3-button w3-mobile">25 Best Self-Improvement
+            Audiobooks </a> <a href="http://www.audiobookreviews.com/audiblelist.php"
+            class="w3-bar-item w3-button w3-mobile">25 Most Popular Audiobooks </a>
+          <a href="http://www.audiobookreviews.com/darkpsylist.php" class="w3-bar-item w3-button w3-mobile">25
+            Best Dark Psychology Audiobooks </a> <a href="http://www.audiobookreviews.com/childlist.php"
+            class="w3-bar-item w3-button w3-mobile">50 Best Children's
+            Audiobooks </a> <a href="http://www.audiobookreviews.com/nonficlist.php"
+            class="w3-bar-item w3-button w3-mobile">50 Best Non-Fiction
+            Audiobooks</a> <a href="http://www.audiobookreviews.com/scifilist.php"
+            class="w3-bar-item w3-button w3-mobile">100 Best Science Fiction
+            Audiobooks</a> </div>
+      </div>
+    </div>
+    <br>
+    <section>
+      <div class="container">
+        <div class="row">
+          <center> <a href="http://www.audiobookreviews.com"><img id="site_logo"
+                src="reviews-logo1.png" title="Title" alt="Title"></a> </center>
+        </div>
+      </div>
+    </section>
+    <!-- End of Section -->&nbsp;
+    <section>
+      <div class="container">
+        <div class="row tagline" style="margin-top: -10px;"> <font size="4"> <font
+              size="3">
+              <p class="alignleft"> <i>&nbsp; An open book blog</i></p>
+              <b> </b>
+              <p class="alignright"><b>
+                  <?php 
+    session_start();    if(!isset($_SESSION['username'])){ ?><a href="login.php"
+                    style="text-decoration: none">Login / Register</a>&nbsp;</b><?php } else {?><a
+                  href="logout.php">Logout</a>&nbsp;
+                <?php } ?></p>
+            </font> <span style="float:left;"><b> <span style="float:right;"><b>
+                  </b></span></b></span></font><b><b> </b></b></div>
+        <b><b> </b></b></div>
+      <b><b> </b></b></section>
+    <b><b>
+        <h1> </h1>
+      </b>
+      <section>
+        <div class="container text-center">
+          <div class="row text-center">
+            <!--
+<left>  &nbsp  <label for="forma">Sort by:</label><select name="forma" onchange="location = this.value;"> <option value="index.php">Popular</option>  <option value="reviews.php">Reviews</option> <option value="genre.php">Genre</option> <option value="list.php">Best of Lists</option></select>  </left>-->
+            <div class="col-md-7 text-right"> </div>
+          </div>
+        </div>
+      </section>
+      <br>
+    </b>
+    <section><b> </b>
+      <div class="container"><b> </b>
+        <div id="mobile_view" class="row">
+          <div class="col-md-12">
+            <div class="cards"><b>
+                <h1 style="text-align: center;">How to Use This Site and FAQ</h1>
+                <p>&nbsp;</p>
+                <h2>How to use:</h2>
+              </b>
+              <p style="padding-left: 25px; font-size:125%;"><b><strong>1.</strong>&nbsp;</b><a
+                  href="https://audiobookreviews.com/">AudioBookReviews.com</a>&nbsp;is
+                a small curated collection of audiobook reviews and
+                recommendations. The front page&nbsp;shows the top 100 upvoted
+                audiobook reviews.</p>
+              <p> </p>
+              <div class="imgbox"> <img class="center-fit" src="https://audiobookreviews.com/images/faq3.png">
+              </div>
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
+              <p style="padding-left: 25px; font-size:125%;"><strong>2.&nbsp;</strong>We
+                aim to include only the best and most popular audiobooks. To get
+                the most out of this site browse audiobooks using the "Best of"
+                and "By Genre" lists.</p>
+              <div class="imgbox"> <img class="center-fit" src="https://audiobookreviews.com/images/faq4.png">
+              </div>
+              <br>
+              <br>
+              <p style="padding-left: 25px; font-size:125%;"><strong>3.</strong>&nbsp;Anyone
+                can post and vote on audiobook reviews and recommendations. Each
+                post can have helpful links to resources like Overdrive,
+                YouTube, Amazon (affiliate links are accepted) or other sites
+                where the book can be found. This site uses Mega for file
+                hosting. If you have not used Mega before you may need to
+                download the app to access your files.</p>
+              <p> </p>
+              <div class="imgbox"> <img class="center-fit" src="https://audiobookreviews.com/images/faq5.png">
+              </div>
+              <p>&nbsp;</p>
+              <h2>FAQ</h2>
+              <p style="padding-left: 30px;"><strong>How do I post?</strong><br>
+                First you will need to login or register. Then click the Submit
+                Post button. Fill in as much info as possible along with your
+                review and links.</p>
+              <p style="padding-left: 30px;"><strong>How do I download?</strong>&nbsp;<br>
+                This site is only for users who previously own the respective
+                titles, any use is governed by the publisher. If you already own
+                the content, please use the Mega link to download your title.
+                You may need to install the Mega app depending on your platform.</p>
+              <p style="padding-left: 30px;"><strong>How many books are
+                  there?&nbsp;</strong><br>
+                Less than 1,000. This is a small collection that aims to have
+                the best and highest rated of each category or genre.<strong><br>
+                  <br>
+                  Who runs this site?<br>
+                </strong>My name is John, I live in England and do this as a
+                hobby project. I am mildly dyslexic and have discovered the
+                world of books through audio and only want to share this love
+                with others. I listen to 1-3 books a week and understand that
+                for most of us the available resources are not sufficient.
+                Goodreads is amazing but lacks reliable reviews and resources,
+                audible is simply not affordable for a majority of people in the
+                world. Services like Overdrive and local libraries are amazing,
+                then even now some are charging upwards of $50 for memberships,
+                and of coruse libraries are not available to everyone.
+                Audiobooks have changed my life, given me the opportunity to
+                "read" hundredes of books I never would have been able to force
+                myself to sit through otherwise.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div style="overflow-x:auto;" class="container-fluid" id="desktop_view">
+      <!--              <div id="preloader">
+  <div id="status">&nbsp;</div></div>-->
+      <div id="footer">
+        <div class="container">
+          <div class="container">
+            <!-- #######  THIS IS A COMMENT - Visible only in the source editor #########-->
+            <h1 style="text-align: center;">How to Use This Site </h1>
+            <h2><u>How to use</u>:</h2>
+            <p style="padding-left: 30px; font-size:125%;"><strong>1.</strong> I
+              started posting my reviews to GoodReads 10+ years ago but found I
+              wanted more interaction and freedom in curating my running list of
+              books. </p>
+            <p style="padding-left: 30px; font-size:125%;"><strong>2. </strong>I
+              started this review blog to share great books, make
+              recommendations and hear from friends and family about their
+              favorite titles.&nbsp;</p>
+            <p style="padding-left: 30px; font-size:125%;"><strong>3.</strong>&nbsp;Anyone
+              vote on books and its free to make an account and post your own
+              recommendations, links and reviews. Your post can include any HTML
+              and helpful links to resources such as Overdrive, YouTube, Amazon
+              (affiliate links are accepted) or other sites where the book can
+              be found. This site primarily uses Mega for file hosting. If you
+              have not used Mega before you may need to download the app to
+              access your files.</p>
+            <p style="padding-left: 30px; font-size:125%;"><br>
+            </p>
+            <p></p>
+            <h2><u>FAQ</u>:</h2>
+            <p></p>
+            <p style="padding-left: 30px;"><strong>How do I post?</strong><br>
+              First you will need to register and login. Then click the Submit
+              Post button. Fill in as much info as possible along with your
+              review and links.</p>
+            <p style="padding-left: 30px;"><strong>How do I download?</strong>&nbsp;<br>
+              This site is only for users who previously own the respective
+              titles and have backed up personally, any use is governed by the
+              publisher. If you already own the content, please use the Mega
+              link to download your title. You may need to install the Mega app
+              depending on your platform.</p>
+            <p style="padding-left: 30px;"><strong>How many books are
+                there?&nbsp;</strong><br>
+              Less than 1,000, but close to it. This is a small collection that
+              aims to have the best and highest rated of each category or genre.<strong><br>
+              </strong></p>
+            <p>&nbsp;</p>
+            <h2>&nbsp;</h2>
+            <p style="padding-left: 30px;"><br>
+              <br>
+            </p>
+          </div>
+        </div>
+        <center>
+          <!-- </iframe>--> <br>
+          <br>
+          <div class="container">
+            <p><br>
+              <br>
+            </p>
+            <div id="footer">
+              <div class="footer">
+                <p style="text-align:left;"><span style="color:#700;"><b>Disclaimer</b></span>:
+                  By clicking any Download link on this site you agree to the
+                  terms and conditions set out by the respective publisher. In
+                  most cases, this means that only users who otherwise own the
+                  copyrighted material are allowed digital access to said
+                  materials. No users are allowed to download anything through
+                  any link This site is simply linking users to a shared
+                  database of their own previously purchased materials in an
+                  effort to reduce redundant backups. Please share responsibly
+                  no user is permitted to download materials they do not already
+                  own. None of the files shown here are actually hosted or
+                  transmitted by this server. The links are provided by this
+                  site's users or search engine. Please contact the content
+                  providers to delete copyright contents if any. </p>
+                <br>
+                <br>
+                <center> <a title="Contact" href="contact.php">Contact</a> - <a
+                    title="FAQ" href="faq.php">FAQ</a> - <a title="DMCA" href="dmca.php">DMCA</a>
+                  - <a title="Audiobook vs. Audio book" href="audiobook_audio_book.php">Audiobook
+                    vs. Audio book</a> </center>
+                <br>
+                <br>
+                <!-- hitwebcounter Code START --> <a href="https://www.hitwebcounter.com"
+                  target="_blank"> <img src="https://hitwebcounter.com/counter/counter.php?page=7353276&amp;style=0007&amp;nbdigits=5&amp;type=page&amp;initCount=0"
+                    title="Web Counter" alt="counter free" border="0"> </a> </div>
+            </div>
+          </div>
+        </center>
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script>
+   
+   
+    $(document).ready(function () {
+     $('#datatable').DataTable(
+
+ );
+
+
+
+
+    });
+    $(document).ready(function () {
+     $('#example').DataTable({
+              "columnDefs": [
+      { "width": "15%", "targets": 1 },
+      { "width": "23%", "targets": 2 },
+      { "width": "8%", "targets": 6 },
+       { "width": "8%", "targets": 0 },
+      { "width": "15%", "targets": 3 },
+      { "width": "15%", "targets": 4 },
+      { "width": "8%", "targets": 5 },
+{ "width": "8%", "targets": 7 },
+
+    ],
+    "order": [[ 0, "desc" ]],
+    
+    "searching": false,
+    
+      "paging": false
+      , "ordering": true
+      , "info": false,
+      "lengthMenu": [[25,50,100, -1], [25, 50,100, "All"]]
+
+     });
+    });
+    
+    
+    
+    
+
+    
+    
+    
+   </script>
+        <script>
+function up(id){
+var up = 1;
+var id=id;
+// Returns successful data submission message when the entered information is stored in database.
+var dataString = 'up='+ up+'&id='+id ;
+// AJAX Code To Submit Form.
+$.ajax({
+type: "POST",
+url: "vote_ajax.php",
+data: dataString,
+dataType: 'JSON',
+success: function(result){
+ if(result['msg']=='n'){
+        // alert('You have voted this post already');
+        document.getElementById("upvalue"+result['id']).innerHTML = result['vote_up'];
+        document.getElementById("downvalue"+result['id']).innerHTML = result['vote_down'];
+        
+    }
+    else{
+document.getElementById("upvalue"+result['id']).innerHTML = result['vote_up'];
+document.getElementById("udc"+result['id']).src = 'upred.png';
+
+document.getElementById("downvalue"+result['id']).innerHTML = result['vote_down'];
+}
+}
+});
+}
+function up_m(id){
+var up = 1;
+var id=id;
+// Returns successful data submission message when the entered information is stored in database.
+var dataString = 'up='+ up+'&id='+id ;
+// AJAX Code To Submit Form.
+$.ajax({
+type: "POST",
+url: "vote_ajax.php",
+data: dataString,
+dataType: 'JSON',
+success: function(result){
+    if(result['msg']=='n'){
+        //alert('You have voted this post already');
+        document.getElementById("upvalue"+result['id']).innerHTML = result['vote_up'];
+        document.getElementById("downvalue"+result['id']).innerHTML = result['vote_down'];
+    }
+    else{
+document.getElementById("upvalue_m"+result['id']).innerHTML = result['vote_up'];
+document.getElementById("udcm"+result['id']).src = 'upred.png';
+document.getElementById("downvalue"+result['id']).innerHTML = result['vote_down'];
+}
+}
+});
+}
+function down(id){
+var down = 1;
+var id=id;
+// Returns successful data submission message when the entered information is stored in database.
+var dataString = 'down='+ down+'&id='+id ;
+// AJAX Code To Submit Form.
+$.ajax({
+type: "POST",
+url: "vote_ajax.php",
+data: dataString,
+dataType: 'JSON',
+success: function(data){
+document.getElementById("downvalue"+data['id']).innerHTML = data['vote_down'];
+document.getElementById("upvalue"+data['id']).innerHTML = data['vote_up'];
+
+}
+});
+}
+
+function copy_key(key) {
+var copyText = document.getElementById(key);
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied key : " + copyText.value);
+}
+</script> <script>
+$(window).on('load', function() { // makes sure the whole site is loaded 
+  $('#status').fadeOut(); // will first fade out the loading animation 
+  $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+  $('body').delay(350).css({'overflow':'visible'});
+})
+$(function () {
+    setIFrameSize();
+    $(window).resize(function () {
+        setIFrameSize();
+    });
+});
+
+function setIFrameSize() {
+    var parentDivWidth = $("#myframe").parent().width();
+    var parentDivHeight = $("#myframe").parent().height();
+    $("#myframe")[0].setAttribute("width", parentDivWidth);
+    $("#myframe")[0].setAttribute("height", parentDivHeight);
+}
+</script> </div></div>
+  </body>
+</html>
